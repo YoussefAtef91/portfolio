@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Flask App{% endblock %}
+
+{% block content %}
+    <div class="container py-3">
+        <div class="chat-container d-flex flex-column" id="chat-window">
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="chat-input" class="form-control chat-input" placeholder="Type a message..." autocomplete="message">
+            <button class="btn" id="send" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+
+    <script>
+        function sendMessage() {
+            let inputField = document.getElementById("chat-input");
+            let message = inputField.value.trim();
+
+            if (message !== "") {
+                let chatWindow = document.getElementById("chat-window");
+
+                // Display user message
+                let userMessage = document.createElement("p");
+                userMessage.classList.add("user");
+                userMessage.textContent = message;
+                chatWindow.appendChild(userMessage);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+
+                // Send message to Flask backend
+                fetch("/chat", {
+                    method: "POST",
+                    body: JSON.stringify({ message: message }),
+                    headers: { "Content-Type": "application/json" }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Display bot response
+                    let botMessage = document.createElement("p");
+                    botMessage.classList.add("bot");
+                    botMessage.textContent = data.reply;
+                    chatWindow.appendChild(botMessage);
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
+                });
+
+                // Clear input field
+                inputField.value = "";
+            }
+        }
+
+        document.getElementById("chat-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+    
+{% endblock %}

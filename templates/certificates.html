@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Certificates - Youssef Atef{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 id="certificates">Certificates</h2>
+    <div class="row">
+        {% for certificate in certificates %}
+        <div class="col-md-4 mb-4 text-center">
+            <a href="{{ certificate['link'] }}" target="_blank" rel="noopener noreferrer">
+                <img src="{{ certificate['image'] }}" class="img-fluid rounded shadow" alt="{{ certificate['name'] }}">
+            </a>
+            <p class="mt-2 text-light">{{ certificate['name'] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Skills - Youssef Atef{% endblock %}
+
+{% block content %}
+<div class="container">
+    <center>
+    <h1 id="skills">Skills</h1>
+    </center>
+    {% set skill_categories = {
+        "Programming Languages": {
+            "Python": 90,
+            "SQL": 85,
+            "R": 60
+        },
+        "Data Science & Machine Learning": {
+            "Machine Learning": 90,
+            "Deep Learning": 75,
+            "Statistics": 85,
+            "Hypothesis Testing": 70,
+            "Time Series": 60
+        },
+        "Data Visualization & Data Engineering": {
+            "Power BI": 75,
+            "Tableau": 70,
+            "Apache Airflow": 60,
+            "Apache Spark": 60,
+            "ETL": 70
+        },
+        "AI & Specialized Fields": {
+            "NLP": 60,
+            "CV": 50,
+            "LLMs": 60
+        }
+    } %}
+
+    {% for category, skills in skill_categories.items() %}
+    <div class="category-box">
+        <h3 class="category-title">{{ category }}</h3>
+        <div class="row">
+            {% for skill, level in skills.items() %}
+            <div class="col-md-4 text-center mb-4">
+                <canvas id="chart-{{ skill|replace(' ', '_') }}" width="150" height="150"></canvas>
+                <h4 class="display-6" id="skill_name">{{ skill }}</h4>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="application/json" id="skills-data">
+    {{ skill_categories|tojson }}
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var skillCategories = JSON.parse(document.getElementById("skills-data").textContent);
+
+        Object.entries(skillCategories).forEach(([category, skills]) => {
+            Object.entries(skills).forEach(([skill, level]) => {
+                let canvasId = `chart-${skill.replace(/\s+/g, '_')}`;
+                let ctx = document.getElementById(canvasId).getContext('2d');
+
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [skill, "Remaining"],
+                        datasets: [{
+                            data: [level, 100 - level],
+                            backgroundColor: ["#A64D79", "#e0e0e0"], 
+                            hoverBackgroundColor: ["#A64D79", "#d6d6d6"]
+                        }]
+                    },
+                    options: {
+                        cutout: '70%',
+                        responsive: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { enabled: false }
+                        },
+                        hover: { mode: null }
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+{% endblock %}

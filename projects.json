@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Chess-ETL",
+        "description": "A chess ETL application",
+        "date": "October 2024",
+        "image": "/static/images/knight.jpg",
+        "hashtags": ["Python", "Apache Airflow", "ETL", "PowerBI", "SQL"],
+        "link": "https://github.com/YoussefAtef91/Chess-ETL-and-Performance-Insights"
+    },
+    {
+        "name": "T5 Text Summarization",
+        "description": "Text Summarization using T5 transformer",
+        "date": "March 2025",
+        "image": "/static/images/text_summarizer.jpg",
+        "hashtags": ["LLMs", "Transformers", "Python", "Pytorch", "NLP", "Deep Learning"],
+        "link": "https://huggingface.co/spaces/YoussefAtef91/T5TextSummarization"
+    },
+    {
+        "name": "Image Colorization Autoencoder",
+        "description": "Image Colorization using autoencoders",
+        "date": "March 2025",
+        "image": "/static/images/colorization.jpg",
+        "hashtags": ["Autoencoders", "Pytorch", "Python", "Computer Vision", "Deep Learning"],
+        "link":"https://www.kaggle.com/code/youssefatef/image-colorization-autoencoder"
+    },
+    {
+        "name": "Penalty-shootouts Hypothesis Testing",
+        "description": "Does the first penalty shooter has an advantage over the other team?",
+        "date": "March 2025",
+        "image": "/static/images/penalty.jpg",
+        "hashtags": ["Hypothesis testing", "Web Scraping", "Python"],
+        "link": "https://github.com/YoussefAtef91/Penalty_Shootouts_Hypothesis_Test"
+    },
+    {
+        "name": "Customer Segmentation",
+        "description": "Customer segementation and profiling for a marketing campaign",
+        "date": "May 2024",
+        "image": "/static/images/segmentation.jpg",
+        "hashtags": ["Python", "Seaborn", "Clustering", "Dimensionality Reduction", "Machine Learning", "Sklearn"],
+        "link": "https://github.com/YoussefAtef91/Customer_Segmentation"
+    },
+    {
+        "name": "Stack Overflow Survey Analysis",
+        "description": "Analysis of Stack Overflow Developer Survey 2023",
+        "date": "July 2024",
+        "image": "/static/images/sof.jpg",
+        "hashtags": ["SQL", "PowerBI", "Visualization"],
+        "link": "https://github.com/YoussefAtef91/StackOverflowSurvey2023"
+    },
+    {
+        "name": "Songs Recommender System",
+        "description": "Content-based songs recommender system using SpotifyAPI",
+        "date": "May 2024",
+        "image": "/static/images/spotify.avif",
+        "hashtags": ["Python", "Flask", "Sklearn", "Recommender Systems"],
+        "link": "https://github.com/YoussefAtef91/Spotify_Recommener_System"
+    },
+    {
+        "name": "Credit Card Approval Prediction",
+        "description": "Machine learning model to predict whether a credit card application will be approved",
+        "date": "May 2023",
+        "image": "/static/images/credit.png",
+        "hashtags": ["Python",  "Machine Learning", "Sklearn", "Classification"],
+        "link": "https://github.com/YoussefAtef91/CreditCardApproval"
+    },
+    {
+        "name": "Customer Churn",
+        "description": "Analyzing the reasons behind customer churn and building predictive models",
+        "date": "March 2022",
+        "image": "/static/images/churn.png",
+        "hashtags": ["Python", "Machine Learning", "Plotly", "Classification", "Sklearn"],
+        "link": "https://github.com/YoussefAtef91/CustomerChurn"
+    },
+    {
+        "name": "IMDB Movies Analysis",
+        "description": "Analyzing and visualizing IMDB movies dataset",
+        "date": "Aug 2022",
+        "image": "/static/images/imdb.png",
+        "hashtags": ["Python", "PowerBI", "Visualization"],
+        "link": "https://github.com/YoussefAtef91/IMDB-MoviesProject-"
+    }
+]

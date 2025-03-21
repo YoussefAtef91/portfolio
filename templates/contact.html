@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - Youssef Atef{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h2 id="contact">Contact Me</h2>
+    <div class="d-flex justify-content-center gap-3 mt-5">
+        <a href="https://www.linkedin.com/in/youssef-atef-/" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="mailto:youssefatef007@gmail.com" class="social-icon">
+            <i class="bi bi-envelope"></i>
+        </a>
+        <a href="https://wa.me/201285695181" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <i class="bi bi-whatsapp"></i>
+        </a>
+    </div>
+</div>
+
+<style>
+    .social-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #f1f1f1;
+        text-decoration: none;
+        font-size: 24px;
+        color: #333;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .social-icon:hover {
+        color: white;
+    }
+
+    .social-icon:nth-child(1):hover { background: #0a66c2; } /* LinkedIn */
+    .social-icon:nth-child(2):hover { background: #c71610; } /* Email */
+    .social-icon:nth-child(3):hover { background: #25D366; } /* whatsapp */
+
+</style>
+{% endblock %}

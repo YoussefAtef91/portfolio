@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - Youssef Atef{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Search Input -->
+    <input type="text" id="search" class="form-control mb-3 chat-input" placeholder="Search projects..." autocomplete="off">
+
+    <!-- Hashtags -->
+    <div id="hashtags" class="mb-5">
+        <span class="badge hashtag" data-tag="Python">Python</span>
+        <span class="badge hashtag" data-tag="SQL">SQL</span>
+        <span class="badge hashtag" data-tag="PowerBI">PowerBI</span>
+        <span class="badge hashtag" data-tag="Machine Learning">Machine Learning</span>
+        <span class="badge hashtag" data-tag="Deep Learning">Deep Learning</span>
+        <span class="badge hashtag" data-tag="Hypothesis Testing">Hypothesis Testing</span>
+        <span class="badge hashtag" data-tag="Pytorch">Pytorch</span>
+        <span class="badge hashtag" data-tag="ETL">ETL</span>
+        <span class="badge hashtag" data-tag="Autoencoders">Autoencoders</span>
+        <span class="badge hashtag" data-tag="Transformers">Transformers</span>
+        <span class="badge hashtag" data-tag="LLMs">LLMs</span>
+        <span class="badge hashtag" data-tag="Web Scraping">Web Scraping</span>
+        <span class="badge hashtag" data-tag="Clustering">Clustering</span>
+        <span class="badge hashtag" data-tag="Dimensionality Reduction">Dimensionality Reduction</span>
+        <span class="badge hashtag" data-tag="Classification">Classification</span>
+        <span class="badge hashtag" data-tag="Regression">Regression</span>
+        <span class="badge hashtag" data-tag="Plotly">Plotly</span>
+        <span class="badge hashtag" data-tag="Seaborn">Seaborn</span>
+        <span class="badge hashtag" data-tag="Sklearn">Sklearn</span>
+        <span class="badge hashtag" data-tag="NLP">NLP</span>
+        <span class="badge hashtag" data-tag="Computer Vision">Computer Vision</span>
+        <span class="badge hashtag" data-tag="Recommender Systems">Recommender Systems</span>
+        <span class="badge hashtag" data-tag="Visualization">Visualization</span>
+        <span class="badge hashtag" data-tag="Time Series">Time Series</span>
+
+
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="row" id="projects-container">
+        {% for project in projects %}
+    <div class="col-md-4 project-card" data-tags="{{ ','.join(project['hashtags']) }}">
+        <a href="{{ project['link'] }}" class="text-decoration-none text-dark" target="_blank" rel="noopener noreferrer">
+            <div class="card mb-4">
+                <img src="{{ project['image'] }}" class="card-img-top" alt="{{ project['name'] }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project['name'] }}</h5>
+                    <p class="card-text">{{ project['description'] }}</p>
+                    <p><small class="card-date">{{ project['date'] }}</small></p>
+                    <div>
+                        {% for tag in project['hashtags'] %}
+                        <span class="badge">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <span class="stretched-link"></span> <!-- Makes the entire card clickable -->
+                </div>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+
+    </div>
+</div>
+
+<script>
+    let selectedTags = new Set();
+
+    // Toggle hashtags selection
+    document.querySelectorAll('.hashtag').forEach(tagElement => {
+        tagElement.addEventListener('click', function () {
+            let tag = this.getAttribute('data-tag').toLowerCase();
+
+            if (selectedTags.has(tag)) {
+                selectedTags.delete(tag);
+                this.classList.remove('selected');
+            } else {
+                selectedTags.add(tag);
+                this.classList.add('selected');
+            }
+
+            filterProjects();
+        });
+    });
+
+    function filterProjects() {
+        let searchQuery = document.getElementById('search').value.toLowerCase();
+        let projectCards = document.querySelectorAll('.project-card');
+
+        projectCards.forEach(card => {
+            let projectTags = card.getAttribute('data-tags').toLowerCase().split(',');
+            let title = card.querySelector('.card-title').textContent.toLowerCase();
+            let description = card.querySelector('.card-text').textContent.toLowerCase();
+
+            let matchesSearch = title.includes(searchQuery) || 
+                                description.includes(searchQuery) || 
+                                projectTags.some(tag => tag.includes(searchQuery));
+
+            let matchesTags = selectedTags.size === 0 || [...selectedTags].every(tag => projectTags.includes(tag)); 
+
+            card.style.display = matchesSearch && matchesTags ? 'block' : 'none';
+        });
+    }
+
+    // Search functionality
+    document.getElementById('search').addEventListener('input', filterProjects);
+</script>
+
+
+<style>
+    .hashtag {
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 15px;
+        background-color: #6A1E55;
+        color: white;
+        margin-right: 5px;
+        display: inline-block;
+    }
+
+    .hashtag.selected {
+        background-color: #A64D79;
+    }
+</style>
+{% endblock %}
